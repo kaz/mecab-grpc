@@ -1,7 +1,9 @@
 package command
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 
 	"github.com/kaz/mecab-grpc/remotetagger"
 	"github.com/kaz/mecab-grpc/tagger"
@@ -13,18 +15,12 @@ type (
 		Remote string `short:"r" long:"remote"`
 
 		Config map[string]string `short:"c" long:"config"`
-
-		Text string `short:"t" long:"text"`
 	}
 )
 
 func (p *Parse) Execute(args []string) error {
 	var t tagger.Tagger
 	var err error
-
-	if p.Text == "" {
-		return fmt.Errorf("--text is empty")
-	}
 
 	if p.Local {
 		t, err = tagger.New(p.Config)
@@ -41,11 +37,17 @@ func (p *Parse) Execute(args []string) error {
 	}
 	defer t.Close()
 
-	parsed, err := t.Parse(p.Text)
-	if err != nil {
-		return fmt.Errorf("Parse: %w", err)
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Split(bufio.ScanLines)
+
+	for scanner.Scan() {
+		parsed, err := t.Parse(scanner.Text())
+		if err != nil {
+			return fmt.Errorf("Parse: %w", err)
+		}
+
+		fmt.Print(parsed)
 	}
 
-	fmt.Println(parsed)
 	return nil
 }
