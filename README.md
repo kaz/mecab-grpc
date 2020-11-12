@@ -18,6 +18,8 @@ Listening on [::]:9000
 
 You can edit `/usr/local/etc/mecabrc` to modify mecab's behavior.
 
+Prebuilt image is also available on https://hub.docker.com/r/sekai/mecab-grpc
+
 ### [Client] Tokenize over gRPC
 
 ```
@@ -33,7 +35,6 @@ EOS
 ```
 
 ### [Client] Embed in you app
-
 
 This repository provides a Go API for communicating with mecab-grpc server.
 See [pkg.go.dev](https://pkg.go.dev/github.com/kaz/mecab-grpc/mecabpb) or `/mecabpb` directory for detail.
