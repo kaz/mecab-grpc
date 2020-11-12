@@ -1,19 +1,37 @@
-FROM gunosy/neologd-for-mecab
+FROM alpine
 
-RUN apk add go gcc
+RUN apk add build-base && \
+    mkdir -p /tmp/mecab && \
+    wget https://github.com/shogo82148/mecab/releases/download/v0.996.5/mecab-0.996.5.tar.gz -O- | tar zxf - -C /tmp/mecab --strip-components 1 && \
+    cd /tmp/mecab && \
+    ./configure && \
+    make && \
+    make install
 
-WORKDIR /mecab-grpc
-COPY . .
+RUN apk add bash curl openssl sudo && \
+    mkdir -p /tmp/neologd && \
+    wget https://github.com/neologd/mecab-ipadic-neologd/archive/master.tar.gz -O- | tar zxf - -C /tmp/neologd --strip-components 1 && \
+    /tmp/neologd/bin/install-mecab-ipadic-neologd -n -y -a && \
+	echo "dicdir = /usr/local/lib/mecab/dic/mecab-ipadic-neologd" > /usr/local/etc/mecabrc
 
-RUN CGO_LDFLAGS="$(mecab-config --libs)" \
+COPY . /mecab-grpc
+
+RUN apk add go git && \
+    cd /mecab-grpc && \
+    CGO_LDFLAGS="$(mecab-config --libs)" \
     CGO_CFLAGS="-I$(mecab-config --inc-dir)" \
-    go build
+    go build -o /usr/local/bin/mecab-grpc
 
-FROM gunosy/neologd-for-mecab
+FROM alpine
 
-COPY --from=0 /mecab-grpc/mecab-grpc /usr/local/bin/mecab-grpc
+COPY --from=0 /usr/local/lib/libmecab.so* /usr/local/lib/
+COPY --from=0 /usr/local/lib/mecab /usr/local/lib/mecab
+COPY --from=0 /usr/local/etc/mecabrc /usr/local/etc/mecabrc
+COPY --from=0 /usr/local/bin/mecab-grpc /usr/local/bin/mecab-grpc
+
+RUN apk add --no-cache libstdc++
 
 EXPOSE 9000
 
 ENTRYPOINT ["mecab-grpc"]
-CMD ["serve", "--config", "dicdir:/usr/lib/mecab/dic/neologd", "--listen", ":9000"]
+CMD ["serve", "--listen", ":9000"]
