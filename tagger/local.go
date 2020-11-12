@@ -28,6 +28,7 @@ func (t *LocalTagger) Parse(input string) (string, error) {
 	return parsed, nil
 }
 
-func (t *LocalTagger) Close() {
+func (t *LocalTagger) Close() error {
 	t.tagger.Destroy()
+	return nil
 }
