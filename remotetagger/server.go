@@ -11,6 +11,8 @@ import (
 type (
 	TaggerServer struct {
 		tagger tagger.Tagger
+
+		mecabpb.UnimplementedMeCabServer
 	}
 )
 
