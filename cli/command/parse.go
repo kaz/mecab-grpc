@@ -7,6 +7,7 @@ import (
 
 	"github.com/kaz/mecab-grpc/remotetagger"
 	"github.com/kaz/mecab-grpc/tagger"
+	"google.golang.org/grpc"
 )
 
 type (
@@ -28,7 +29,7 @@ func (p *Parse) Execute(args []string) error {
 			return fmt.Errorf("tagger.New: %w", err)
 		}
 	} else if p.Remote != "" {
-		t, err = remotetagger.New(p.Remote)
+		t, err = remotetagger.New(p.Remote, grpc.WithInsecure())
 		if err != nil {
 			return fmt.Errorf("remotetagger.New: %w", err)
 		}
