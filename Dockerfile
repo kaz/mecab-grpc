@@ -12,7 +12,7 @@ RUN apk add bash curl openssl sudo && \
     mkdir -p /tmp/neologd && \
     wget https://github.com/neologd/mecab-ipadic-neologd/archive/master.tar.gz -O- | tar zxf - -C /tmp/neologd --strip-components 1 && \
     /tmp/neologd/bin/install-mecab-ipadic-neologd -n -y -a && \
-	echo "dicdir = /usr/local/lib/mecab/dic/mecab-ipadic-neologd" > /usr/local/etc/mecabrc
+    echo "dicdir = /usr/local/lib/mecab/dic/mecab-ipadic-neologd" > /usr/local/etc/mecabrc
 
 COPY . /mecab-grpc
 
