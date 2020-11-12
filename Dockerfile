@@ -20,7 +20,7 @@ RUN apk add go git && \
     cd /mecab-grpc && \
     CGO_LDFLAGS="$(mecab-config --libs)" \
     CGO_CFLAGS="-I$(mecab-config --inc-dir)" \
-    go build -o /usr/local/bin/mecab-grpc
+    go build -tags mecab -o /usr/local/bin/mecab-grpc
 
 FROM alpine
 
