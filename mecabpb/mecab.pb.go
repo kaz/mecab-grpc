@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.25.0-devel
 // 	protoc        v3.13.0
-// source: pb/mecab.proto
+// source: mecabpb/mecab.proto
 
-package pb
+package mecabpb
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -31,7 +31,7 @@ type ParseRequest struct {
 func (x *ParseRequest) Reset() {
 	*x = ParseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pb_mecab_proto_msgTypes[0]
+		mi := &file_mecabpb_mecab_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -44,7 +44,7 @@ func (x *ParseRequest) String() string {
 func (*ParseRequest) ProtoMessage() {}
 
 func (x *ParseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pb_mecab_proto_msgTypes[0]
+	mi := &file_mecabpb_mecab_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +57,7 @@ func (x *ParseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ParseRequest.ProtoReflect.Descriptor instead.
 func (*ParseRequest) Descriptor() ([]byte, []int) {
-	return file_pb_mecab_proto_rawDescGZIP(), []int{0}
+	return file_mecabpb_mecab_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *ParseRequest) GetInput() string {
@@ -78,7 +78,7 @@ type ParseResponse struct {
 func (x *ParseResponse) Reset() {
 	*x = ParseResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pb_mecab_proto_msgTypes[1]
+		mi := &file_mecabpb_mecab_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -91,7 +91,7 @@ func (x *ParseResponse) String() string {
 func (*ParseResponse) ProtoMessage() {}
 
 func (x *ParseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pb_mecab_proto_msgTypes[1]
+	mi := &file_mecabpb_mecab_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -104,7 +104,7 @@ func (x *ParseResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ParseResponse.ProtoReflect.Descriptor instead.
 func (*ParseResponse) Descriptor() ([]byte, []int) {
-	return file_pb_mecab_proto_rawDescGZIP(), []int{1}
+	return file_mecabpb_mecab_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *ParseResponse) GetOutput() string {
@@ -114,40 +114,40 @@ func (x *ParseResponse) GetOutput() string {
 	return ""
 }
 
-var File_pb_mecab_proto protoreflect.FileDescriptor
+var File_mecabpb_mecab_proto protoreflect.FileDescriptor
 
-var file_pb_mecab_proto_rawDesc = []byte{
-	0x0a, 0x0e, 0x70, 0x62, 0x2f, 0x6d, 0x65, 0x63, 0x61, 0x62, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x22, 0x24, 0x0a, 0x0c, 0x50, 0x61, 0x72, 0x73, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x12, 0x14, 0x0a, 0x05, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x05, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x22, 0x27, 0x0a, 0x0d, 0x50, 0x61, 0x72, 0x73, 0x65, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x6f, 0x75, 0x74, 0x70, 0x75,
-	0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x32,
-	0x31, 0x0a, 0x05, 0x4d, 0x65, 0x43, 0x61, 0x62, 0x12, 0x28, 0x0a, 0x05, 0x50, 0x61, 0x72, 0x73,
-	0x65, 0x12, 0x0d, 0x2e, 0x50, 0x61, 0x72, 0x73, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x0e, 0x2e, 0x50, 0x61, 0x72, 0x73, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x22, 0x00, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x3b, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x33,
+var file_mecabpb_mecab_proto_rawDesc = []byte{
+	0x0a, 0x13, 0x6d, 0x65, 0x63, 0x61, 0x62, 0x70, 0x62, 0x2f, 0x6d, 0x65, 0x63, 0x61, 0x62, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x24, 0x0a, 0x0c, 0x50, 0x61, 0x72, 0x73, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x22, 0x27, 0x0a, 0x0d, 0x50,
+	0x61, 0x72, 0x73, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06,
+	0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x6f, 0x75,
+	0x74, 0x70, 0x75, 0x74, 0x32, 0x31, 0x0a, 0x05, 0x4d, 0x65, 0x43, 0x61, 0x62, 0x12, 0x28, 0x0a,
+	0x05, 0x50, 0x61, 0x72, 0x73, 0x65, 0x12, 0x0d, 0x2e, 0x50, 0x61, 0x72, 0x73, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x50, 0x61, 0x72, 0x73, 0x65, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x0b, 0x5a, 0x09, 0x2e, 0x3b, 0x6d, 0x65, 0x63,
+	0x61, 0x62, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_pb_mecab_proto_rawDescOnce sync.Once
-	file_pb_mecab_proto_rawDescData = file_pb_mecab_proto_rawDesc
+	file_mecabpb_mecab_proto_rawDescOnce sync.Once
+	file_mecabpb_mecab_proto_rawDescData = file_mecabpb_mecab_proto_rawDesc
 )
 
-func file_pb_mecab_proto_rawDescGZIP() []byte {
-	file_pb_mecab_proto_rawDescOnce.Do(func() {
-		file_pb_mecab_proto_rawDescData = protoimpl.X.CompressGZIP(file_pb_mecab_proto_rawDescData)
+func file_mecabpb_mecab_proto_rawDescGZIP() []byte {
+	file_mecabpb_mecab_proto_rawDescOnce.Do(func() {
+		file_mecabpb_mecab_proto_rawDescData = protoimpl.X.CompressGZIP(file_mecabpb_mecab_proto_rawDescData)
 	})
-	return file_pb_mecab_proto_rawDescData
+	return file_mecabpb_mecab_proto_rawDescData
 }
 
-var file_pb_mecab_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_pb_mecab_proto_goTypes = []interface{}{
+var file_mecabpb_mecab_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_mecabpb_mecab_proto_goTypes = []interface{}{
 	(*ParseRequest)(nil),  // 0: ParseRequest
 	(*ParseResponse)(nil), // 1: ParseResponse
 }
-var file_pb_mecab_proto_depIdxs = []int32{
+var file_mecabpb_mecab_proto_depIdxs = []int32{
 	0, // 0: MeCab.Parse:input_type -> ParseRequest
 	1, // 1: MeCab.Parse:output_type -> ParseResponse
 	1, // [1:2] is the sub-list for method output_type
@@ -157,13 +157,13 @@ var file_pb_mecab_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_pb_mecab_proto_init() }
-func file_pb_mecab_proto_init() {
-	if File_pb_mecab_proto != nil {
+func init() { file_mecabpb_mecab_proto_init() }
+func file_mecabpb_mecab_proto_init() {
+	if File_mecabpb_mecab_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_pb_mecab_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_mecabpb_mecab_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ParseRequest); i {
 			case 0:
 				return &v.state
@@ -175,7 +175,7 @@ func file_pb_mecab_proto_init() {
 				return nil
 			}
 		}
-		file_pb_mecab_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_mecabpb_mecab_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ParseResponse); i {
 			case 0:
 				return &v.state
@@ -192,18 +192,18 @@ func file_pb_mecab_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_pb_mecab_proto_rawDesc,
+			RawDescriptor: file_mecabpb_mecab_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_pb_mecab_proto_goTypes,
-		DependencyIndexes: file_pb_mecab_proto_depIdxs,
-		MessageInfos:      file_pb_mecab_proto_msgTypes,
+		GoTypes:           file_mecabpb_mecab_proto_goTypes,
+		DependencyIndexes: file_mecabpb_mecab_proto_depIdxs,
+		MessageInfos:      file_mecabpb_mecab_proto_msgTypes,
 	}.Build()
-	File_pb_mecab_proto = out.File
-	file_pb_mecab_proto_rawDesc = nil
-	file_pb_mecab_proto_goTypes = nil
-	file_pb_mecab_proto_depIdxs = nil
+	File_mecabpb_mecab_proto = out.File
+	file_mecabpb_mecab_proto_rawDesc = nil
+	file_mecabpb_mecab_proto_goTypes = nil
+	file_mecabpb_mecab_proto_depIdxs = nil
 }

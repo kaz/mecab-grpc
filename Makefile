@@ -1,8 +1,10 @@
-.PHONY: pb
-pb: pb/mecab.pb.go pb/mecab_grpc.pb.go
+PB_DIR:=mecabpb
 
-pb/mecab.pb.go: pb/mecab.proto
+.PHONY: ${PB_DIR}
+${PB_DIR}: ${PB_DIR}/mecab.pb.go ${PB_DIR}/mecab_grpc.pb.go
+
+${PB_DIR}/mecab.pb.go: ${PB_DIR}/mecab.proto
 	protoc --go_out=$(@D) $^
 
-pb/mecab_grpc.pb.go: pb/mecab.proto
+${PB_DIR}/mecab_grpc.pb.go: ${PB_DIR}/mecab.proto
 	protoc --go-grpc_out=$(@D) $^

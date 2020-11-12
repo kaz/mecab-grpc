@@ -1,11 +1,10 @@
 syntax = "proto3";
 
-option go_package = ".;pb";
+option go_package = ".;mecabpb";
 
 service MeCab {
 	rpc Parse(ParseRequest) returns (ParseResponse) {}
 }
-
 
 message ParseRequest {
 	string input = 1;

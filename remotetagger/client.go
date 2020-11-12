@@ -4,14 +4,14 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/kaz/mecab-grpc/pb"
+	"github.com/kaz/mecab-grpc/mecabpb"
 	"google.golang.org/grpc"
 )
 
 type (
 	RemoteTagger struct {
 		conn   *grpc.ClientConn
-		client pb.MeCabClient
+		client mecabpb.MeCabClient
 	}
 )
 
@@ -22,7 +22,7 @@ func New(target string, opts ...grpc.DialOption) (*RemoteTagger, error) {
 	}
 	return &RemoteTagger{
 		conn:   conn,
-		client: pb.NewMeCabClient(conn),
+		client: mecabpb.NewMeCabClient(conn),
 	}, nil
 }
 
@@ -30,7 +30,7 @@ func (t *RemoteTagger) Parse(input string) (string, error) {
 	return t.ParseWithContext(context.Background(), input)
 }
 func (t *RemoteTagger) ParseWithContext(ctx context.Context, input string) (string, error) {
-	resp, err := t.client.Parse(ctx, &pb.ParseRequest{Input: input})
+	resp, err := t.client.Parse(ctx, &mecabpb.ParseRequest{Input: input})
 	if err != nil {
 		return "", fmt.Errorf("client.Parse: %w", err)
 	}

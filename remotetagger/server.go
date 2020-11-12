@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/kaz/mecab-grpc/pb"
+	"github.com/kaz/mecab-grpc/mecabpb"
 	"github.com/kaz/mecab-grpc/tagger"
 )
 
@@ -18,12 +18,12 @@ func NewServer(t tagger.Tagger) *TaggerServer {
 	return &TaggerServer{tagger: t}
 }
 
-func (s *TaggerServer) Parse(ctx context.Context, req *pb.ParseRequest) (*pb.ParseResponse, error) {
+func (s *TaggerServer) Parse(ctx context.Context, req *mecabpb.ParseRequest) (*mecabpb.ParseResponse, error) {
 	parsed, err := s.tagger.Parse(req.GetInput())
 	if err != nil {
 		return nil, fmt.Errorf("tagger.Parse: %w", err)
 	}
-	return &pb.ParseResponse{Output: parsed}, nil
+	return &mecabpb.ParseResponse{Output: parsed}, nil
 }
 
 func (s *TaggerServer) Close() error {
