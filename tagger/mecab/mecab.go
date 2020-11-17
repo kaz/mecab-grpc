@@ -2,33 +2,35 @@ package mecab
 
 import (
 	"fmt"
-
-	"github.com/shogo82148/go-mecab"
 )
 
 type (
+	Config = map[string]string
+
 	MecabTagger struct {
-		tagger mecab.MeCab
+		pool *MecabPool
 	}
 )
 
-func New(config map[string]string) (*MecabTagger, error) {
-	tagger, err := mecab.New(config)
-	if err != nil {
-		return nil, fmt.Errorf("mecab.New: %w", err)
-	}
-	return &MecabTagger{tagger: tagger}, nil
+func New(config Config) (*MecabTagger, error) {
+	return &MecabTagger{pool: NewPool(config)}, nil
 }
 
 func (t *MecabTagger) Parse(input string) (string, error) {
-	parsed, err := t.tagger.Parse(input)
+	tagger, err := t.pool.Get()
+	if err != nil {
+		return "", fmt.Errorf("pool.Get: %w", err)
+	}
+
+	parsed, err := tagger.Parse(input)
 	if err != nil {
 		return "", fmt.Errorf("tagger.Parse: %w", err)
 	}
+
+	t.pool.Put(tagger)
 	return parsed, nil
 }
 
 func (t *MecabTagger) Close() error {
-	t.tagger.Destroy()
 	return nil
 }

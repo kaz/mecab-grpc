@@ -24,12 +24,12 @@ RUN apk add go git && \
 
 FROM alpine
 
+RUN apk add --no-cache libstdc++
+
 COPY --from=0 /usr/local/lib/libmecab.so* /usr/local/lib/
 COPY --from=0 /usr/local/lib/mecab /usr/local/lib/mecab
 COPY --from=0 /usr/local/etc/mecabrc /usr/local/etc/mecabrc
 COPY --from=0 /usr/local/bin/mecab-grpc /usr/local/bin/mecab-grpc
-
-RUN apk add --no-cache libstdc++
 
 EXPOSE 9000
 
